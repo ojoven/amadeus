@@ -6,6 +6,7 @@ getCompositions();
 function getCompositions() {
 
     $composers = getListComposers();
+    $composers = array_slice($composers, 0, 2);
 
     foreach ($composers as $composer) {
 
@@ -13,22 +14,40 @@ function getCompositions() {
         saveHtmlSearchComposerCompositions($composer);
 
         // Once saved, we extract the compositions
-        extractCompositionsFromSearchHtmls($composer);
+        $compositions = extractCompositionsFromSearchHtmls($composer);
+        $compositions = array_slice($compositions, 0, 3);
+
+        // For each composition, let's try to retrieve the info from Wikipedia
+        foreach ($compositions as $composition) {
+
+            getWikipediaPageForComposition($composition);
+        }
 
     }
 
 }
 
+function getWikipediaPageForComposition($composition) {
+
+    $urlSearchEs = "https://es.wikipedia.org/w/api.php?action=query&list=search&srsearch=" . $composition . "&utf8=";
+
+}
+
 function extractCompositionsFromSearchHtmls($composer) {
 
+    $compositions = array();
     $saveHtmlFilePath = getHtmlFilePathSearchCompositions($composer);
     $html = str_get_html(file_get_contents($saveHtmlFilePath));
 
     foreach ($html->find('._G0d') as $span) {
 
-            echo trim(ltrim($span->plaintext, ',')) . PHP_EOL;
+        $composition = trim(ltrim($span->plaintext, ','));
+        echo $composition . PHP_EOL;
+        array_push($compositions, $composition);
 
     }
+
+    return $compositions;
 
 }
 
