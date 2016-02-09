@@ -15,11 +15,10 @@ function getCompositions() {
 
         // Once saved, we extract the compositions
         $compositions = extractCompositionsFromSearchHtmls($composer);
-        $compositions = array_slice($compositions, 0, 3);
+        $compositions = array_slice($compositions, 0, 1);
 
         // For each composition, let's try to retrieve the info from Wikipedia
         foreach ($compositions as $composition) {
-
             getWikipediaPageForComposition($composition);
         }
 
@@ -29,25 +28,25 @@ function getCompositions() {
 
 function getWikipediaPageForComposition($composition) {
 
-    $urlSearchEs = "https://es.wikipedia.org/w/api.php?action=query&list=search&srsearch=" . $composition . "&utf8=";
+    $languages = array('es', 'en');
+    foreach ($languages as $language) {
+
+        // First we have to retrieve
+        $urlSearchEn = "https://" . $language . ".wikipedia.org/w/api.php?action=query&list=search&srsearch=" . $composition . "&utf8=&format=json";
+        $data = getContentFromUrlJson($urlSearchEn);
+
+        //$urlSearch = "https://" . $language . ".wikipedia.org/w/api.php?action=opensearch&search=" . $composition . "&limit=1&namespace=0&format=json";
+        print_r($data);
+    }
+
 
 }
 
-function extractCompositionsFromSearchHtmls($composer) {
+function getContentFromUrlJson($url) {
 
-    $compositions = array();
-    $saveHtmlFilePath = getHtmlFilePathSearchCompositions($composer);
-    $html = str_get_html(file_get_contents($saveHtmlFilePath));
-
-    foreach ($html->find('._G0d') as $span) {
-
-        $composition = trim(ltrim($span->plaintext, ','));
-        echo $composition . PHP_EOL;
-        array_push($compositions, $composition);
-
-    }
-
-    return $compositions;
+    $json = file_get_contents($url);
+    $result = json_decode($json, true);
+    return $result;
 
 }
 
@@ -67,6 +66,24 @@ function saveHtmlSearchComposerCompositions($composer) {
     file_put_contents($saveHtmlFilePath, $htmlSearch);
 
     sleep(5); // To avoid being banished, just prevention
+
+}
+
+function extractCompositionsFromSearchHtmls($composer) {
+
+    $compositions = array();
+    $saveHtmlFilePath = getHtmlFilePathSearchCompositions($composer);
+    $html = str_get_html(file_get_contents($saveHtmlFilePath));
+
+    foreach ($html->find('._G0d') as $span) {
+
+        $composition = trim(ltrim($span->plaintext, ','));
+        echo $composition . PHP_EOL;
+        array_push($compositions, $composition);
+
+    }
+
+    return $compositions;
 
 }
 
