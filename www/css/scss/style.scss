@@ -1,0 +1,56 @@
+// Reset
+@import "partials/reset";
+
+// Mixins
+@import "partials/mixins";
+
+// Variables
+$font1: 'Poiret One', cursive;
+
+// Layout
+body {
+  text-align: center;
+  font-family: $font1;
+}
+
+#main-header {
+
+  margin-top: 30px;
+
+  h1 {
+    font-weight: bold;
+    font-size: 40px;
+    margin: 10px;
+  }
+
+  .subtitle {
+    display: block;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+}
+
+#main {
+  margin: 30px;
+  section {
+
+    .title {
+      display: block;
+      font-weight: bold;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    select {
+      margin-top: 10px;
+      padding: 5px 10px;
+      font-size: 18px;
+    }
+
+  }
+
+}

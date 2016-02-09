@@ -1,5 +1,6 @@
 <?php
-include 'simple_html_dom.php';
+include 'lib/simple_html_dom.php';
+include 'lib/MysqliDb.php';
 
 getCompositions();
 
