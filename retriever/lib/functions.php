@@ -1,4 +1,39 @@
 <?php
+include 'MysqliDb.php';
+
+function getListCompositionsDb() {
+
+    $db = new MysqliDb(HOST, USER, PASSWORD, DBNAME);
+    $query = "SELECT compositions.id, composers.name as composer, compositions.name as composition FROM compositions LEFT JOIN composers ON compositions.composer_id = composers.id";
+    $compositions = $db->rawQuery($query);
+    return $compositions;
+
+}
+
+function getListComposers() {
+
+    $composers = array();
+    $filePath = "../data/composers";
+    $handle = fopen($filePath, "r");
+    if ($handle) {
+        while (($line = fgets($handle)) !== false) {
+            array_push($composers, trim($line));
+        }
+
+        fclose($handle);
+    }
+
+    return $composers;
+
+}
+
+function getListComposersDb() {
+
+    $db = new MysqliDb(HOST, USER, PASSWORD, DBNAME);
+    $query = "SELECT * FROM composers";
+    $composers = $db->rawQuery($query);
+    return $composers;
+}
 
 function getWikipediaPageForComposition($composition) {
 
@@ -70,23 +105,6 @@ function getHtmlFilePathSearchCompositions($composer) {
 
 function getSlugComposerEncoded($composer) {
     return urlencode(strtolower(trim($composer)));
-}
-
-function getListComposers() {
-
-    $composers = array();
-    $filePath = "../data/composers";
-    $handle = fopen($filePath, "r");
-    if ($handle) {
-        while (($line = fgets($handle)) !== false) {
-            array_push($composers, trim($line));
-        }
-
-        fclose($handle);
-    }
-
-    return $composers;
-
 }
 
 function escapeSingleQuote($string) {

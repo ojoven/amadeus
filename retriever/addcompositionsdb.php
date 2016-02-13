@@ -30,11 +30,3 @@ function insertComposersOnDB() {
     }
 
 }
-
-function getListComposersDb() {
-
-    $db = new MysqliDb(HOST, USER, PASSWORD, DBNAME);
-    $query = "SELECT * FROM composers";
-    $composers = $db->rawQuery($query);
-    return $composers;
-}
