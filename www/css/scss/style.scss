@@ -54,3 +54,30 @@ body {
   }
 
 }
+
+#play {
+
+  margin: 30px;
+
+  // Play icon + Loader
+  img {
+    opacity: 0.4;
+    width: 150px;
+    height: 150px;
+  }
+
+  // Play icon
+  #play-icon {
+    cursor: pointer;
+  }
+
+  a:hover, a:focus {
+    #play-ico { opacity: 0.6; }
+  }
+
+  // Loader
+  #lesson-loader {
+    display: none;
+  }
+
+}

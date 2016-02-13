@@ -32,6 +32,16 @@
             </select>
         </section>
 
+        <section id="play">
+
+            <a href="#" id="to-play-lesson">
+                <img class="play-icon" src="/img/icon_play.svg" alt="Play icon">
+            </a>
+
+            <img id="lesson-loader" src="/img/loading.svg" alt="Loader">
+
+        </section>
+
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

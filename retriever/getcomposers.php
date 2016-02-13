@@ -2,10 +2,11 @@
 include '../env.php';
 include 'lib/simple_html_dom.php';
 include 'lib/MysqliDb.php';
+include 'lib/functions.php';
 
-insertComposersOnDB();
+insertCompositionsOnDB();
 
-function insertComposersOnDB() {
+function insertCompositionsOnDB() {
 
     $composers = getListComposers();
 
@@ -23,30 +24,5 @@ function insertComposersOnDB() {
         $db->rawQuery($query);
 
     }
-
-}
-
-function getSlugComposer($composer) {
-    $composer = trim($composer);
-    $composer = strtolower($composer);
-    $composer = str_replace(' ', '_',$composer);
-    $composer = str_replace('-', '_',$composer);
-    return $composer;
-}
-
-function getListComposers() {
-
-    $composers = array();
-    $filePath = "../data/composers";
-    $handle = fopen($filePath, "r");
-    if ($handle) {
-        while (($line = fgets($handle)) !== false) {
-            array_push($composers, trim($line));
-        }
-
-        fclose($handle);
-    }
-
-    return $composers;
 
 }
