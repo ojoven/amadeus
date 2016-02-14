@@ -20,7 +20,14 @@ if (!isset($_GET['action'])) {
 switch ($_GET['action']) {
 
     case 'loadcomposers':
-        $data = loadComposers();
+        $composer = new Composer();
+        $data = $composer->loadComposers();
+        send_json($data);
+        break;
+
+    case 'testcompositions':
+        $composition = new Composition();
+        $data = $composition->getRandomCompositionConsideringRelevance();
         send_json($data);
         break;
 

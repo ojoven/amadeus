@@ -10,9 +10,15 @@ $client->setApplicationName("Amadeus");
 $client->setDeveloperKey(YOUTUBE_API_KEY);
 
 $compositions = getListCompositionsDb();
-$compositions = array_slice($compositions, 0, 10);
+$countCompositions = count($compositions);
 
-foreach ($compositions as $composition) {
+$startComposition = 695;
+
+foreach ($compositions as $numComposition=>$composition) {
+
+    // There were some problems when retrieving the data from YouTube
+    // so, to avoid retrieving everything from scratch we set a start number
+    if ($numComposition < $startComposition) continue;
 
     $maxResults = 25;
     $youtube = new Google_Service_YouTube($client);
@@ -40,7 +46,26 @@ foreach ($compositions as $composition) {
 
     }
 
-    echo "Inserting videos for " . $composition['composition'] . PHP_EOL;
-    sleep(1); // To avoid having problems with YouTube API quota limit
+    echo $numComposition + 1 . "/". $countCompositions . ": Inserting videos for " . $composition['composition'] . PHP_EOL;
+    usleep(150); // To avoid having problems with YouTube API quota limit
+
+}
+
+function test() {
+
+    $client = new Google_Client();
+    $client->setApplicationName("Amadeus");
+    $client->setDeveloperKey(YOUTUBE_API_KEY);
+
+    $youtube = new Google_Service_YouTube($client);
+    $searchResponse = $youtube->search->listSearch('id,snippet', array(
+        'q' => 'test',
+        'maxResults' => 25,
+        'type' => 'video',
+        'order' => 'relevance',
+        'videoEmbeddable' => 'true'
+    ));
+
+    print_r($searchResponse);
 
 }
