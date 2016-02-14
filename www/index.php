@@ -40,7 +40,42 @@
 
             <img id="composition-loader" src="/img/loading.svg" alt="Loader">
 
+
             <section id="composition-content">
+
+                <div id="intro-card" class="card">
+                    <div class="title">Ahora está sonando...</div>
+                    <div class="body">
+                        <a href="#" id="composition-title" class="learn-option"></a>
+                        <a href="#" id="composer-name" class="learn-option"></a>
+                    </div>
+                </div>
+
+                <div id="video-container">
+                    <div id="player"></div>
+
+                    <div id="video-controls">
+
+                        <div id="options">
+
+                            <a class="option" id="to-play-video" href="#"><i></i></a>
+                            <a class="option" id="to-pause-video" href="#"><i></i></a>
+                            <a class="option" id="to-reload-video" href="#"><i></i></a>
+                            <a class="option" id="to-next-video" href="#"><i></i></a>
+
+                        </div>
+
+                        <div class="progress-wrap progress">
+                            <div id="video-progress" class="progress-bar progress"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+
+            <!--
+            <section id="composition-content" hidden>
 
                 <ul class="tabs">
 
@@ -62,6 +97,7 @@
                 <div id="player"></div>
 
             </section>
+            -->
 
         </section>
 

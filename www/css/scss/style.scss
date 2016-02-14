@@ -13,6 +13,11 @@ body {
   font-family: $font1;
 }
 
+a {
+  color: #444;
+  text-decoration: none;
+}
+
 #main-header {
 
   margin-top: 30px;
@@ -78,6 +83,104 @@ body {
   // Loader
   #composition-loader {
     display: none;
+  }
+
+}
+
+#composition-content {
+
+  display: none;
+  margin: 30px;
+
+  .card {
+    width: 600px;
+    max-width: 95%;
+    height: 300px;
+    margin: 0 auto;
+
+    .title {
+      margin: 20px;
+    }
+
+    .learn-option {
+      display: block;
+      border: 4px solid #ccc;
+      font-size: 30px;
+      margin: 20px;
+      padding: 15px;
+
+      .active {
+
+        cursor: pointer;
+        &:hover, &:focus {
+
+        }
+      }
+    }
+
+  }
+
+}
+
+#player {
+
+  // We'll be hiding the video
+  opacity: 0;
+  height: 0;
+}
+
+.progress {
+  width: 100%;
+  height: 5px;
+}
+
+.progress-wrap {
+  background: #f80;
+  margin: 20px 0;
+  overflow: hidden;
+  position: relative;
+  .progress-bar {
+    background: #ddd;
+    left: 0;
+    position: absolute;
+    top: 0;
+  }
+}
+
+#video-container {
+
+  #video-controls {
+
+    .options {
+
+    }
+
+    .option {
+
+      display: inline-block;
+      margin: 0 20px;
+
+      i {
+        opacity: 0.3;
+        background-size: cover;
+        background-repeat: no-repeat;
+        display: block;
+        width: 30px;
+        height: 30px;
+      }
+
+      &:hover, &:focus {
+        i { opacity: 0.5; }
+      }
+    }
+
+    #to-play-video { display: none; }
+
+    #to-play-video i { background-image: url(../img/icon_play_2.svg); }
+    #to-pause-video i { background-image: url(../img/icon_pause.svg); }
+    #to-next-video i { background-image: url(../img/icon_next.svg); }
+    #to-reload-video i { background-image: url(../img/icon_reload.svg); }
+
   }
 
 }

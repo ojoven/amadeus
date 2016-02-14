@@ -42,6 +42,8 @@ h1, h2, h3, h4 { font-weight: normal; }
   100% { -moz-transform: translate3d(0, 0, 0); -o-transform: translate3d(0, 0, 0); -ms-transform: translate3d(0, 0, 0); -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); } }
 body { text-align: center; font-family: "Poiret One", cursive; }
 
+a { color: #444; text-decoration: none; }
+
 #main-header { margin-top: 30px; }
 #main-header h1 { font-weight: bold; font-size: 40px; margin: 10px; }
 #main-header .subtitle { display: block; padding-bottom: 15px; border-bottom: 1px solid #ccc; width: 80%; margin-left: auto; margin-right: auto; }
@@ -55,3 +57,25 @@ body { text-align: center; font-family: "Poiret One", cursive; }
 #play #play-icon { cursor: pointer; }
 #play a:hover #play-ico, #play a:focus #play-ico { opacity: 0.6; }
 #play #composition-loader { display: none; }
+
+#composition-content { display: none; margin: 30px; }
+#composition-content .card { width: 600px; max-width: 95%; height: 300px; margin: 0 auto; }
+#composition-content .card .title { margin: 20px; }
+#composition-content .card .learn-option { display: block; border: 4px solid #ccc; font-size: 30px; margin: 20px; padding: 15px; }
+#composition-content .card .learn-option .active { cursor: pointer; }
+
+#player { opacity: 0; height: 0; }
+
+.progress { width: 100%; height: 5px; }
+
+.progress-wrap { background: #f80; margin: 20px 0; overflow: hidden; position: relative; }
+.progress-wrap .progress-bar { background: #ddd; left: 0; position: absolute; top: 0; }
+
+#video-container #video-controls .option { display: inline-block; margin: 0 20px; }
+#video-container #video-controls .option i { opacity: 0.3; background-size: cover; background-repeat: no-repeat; display: block; width: 30px; height: 30px; }
+#video-container #video-controls .option:hover i, #video-container #video-controls .option:focus i { opacity: 0.5; }
+#video-container #video-controls #to-play-video { display: none; }
+#video-container #video-controls #to-play-video i { background-image: url(../img/icon_play_2.svg); }
+#video-container #video-controls #to-pause-video i { background-image: url(../img/icon_pause.svg); }
+#video-container #video-controls #to-next-video i { background-image: url(../img/icon_next.svg); }
+#video-container #video-controls #to-reload-video i { background-image: url(../img/icon_reload.svg); }
