@@ -10,6 +10,9 @@ include "../env.php";
 // models
 include "../app/models/composer.php";
 include "../app/models/composition.php";
+include "../app/models/lesson_composer.php";
+include "../app/models/lesson_composition.php";
+include "../app/models/video.php";
 
 // NO ACTION PROVIDED
 if (!isset($_GET['action'])) {
@@ -25,9 +28,9 @@ switch ($_GET['action']) {
         send_json($data);
         break;
 
-    case 'testcompositions':
+    case 'getnextcomposition':
         $composition = new Composition();
-        $data = $composition->getRandomCompositionConsideringRelevance();
+        $data = $composition->getNextComposition();
         send_json($data);
         break;
 

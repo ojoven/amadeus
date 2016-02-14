@@ -5,11 +5,26 @@ include "../../env.php";
 
 class Composer {
 
+    protected $db;
+
+    public function __construct() {
+        $this->db = new MysqliDb(HOST, USER, PASSWORD, DBNAME);
+    }
+
+    // Single
+    public function getComposer($composerId) {
+
+        $query = "SELECT * FROM composers WHERE id = " . $composerId;
+        $composers = $this->db->query($query);
+        return (isset($composers[0])) ? $composers[0] : false;
+
+    }
+
+    // List
     public function loadComposers() {
 
-        $db = new MysqliDb(HOST, USER, PASSWORD, DBNAME);
         $query = "SELECT * FROM composers";
-        $composers = $db->query($query);
+        $composers = $this->db->query($query);
 
         if (!empty($composers)) {
             $data['success'] = true;

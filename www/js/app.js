@@ -1,13 +1,13 @@
 // DOM VARS
 var $lessonsDropdown = $("#lessons"),
-    $toPlayLesson = $("#to-play-lesson"),
-    $lessonLoader = $("#lesson-loader");
+    $toPlayComposition = $("#to-play-composition"),
+    $compositionLoader = $("#composition-loader");
 
 // LOGIC
 $(function() {
 
     loadComposersOnLessonsDropdownOnPageLoad();
-    toPlayLessonManagement();
+    toPlayCompositionManagement();
 
 });
 
@@ -42,26 +42,52 @@ function loadComposersOnLessonsDropdownOnPageLoad() {
 
 }
 
-function toPlayLessonManagement() {
+function toPlayCompositionManagement() {
 
-    $toPlayLesson.off().on('click', function() {
-        playNextLesson();
+    $toPlayComposition.off().on('click', function() {
+        playNextComposition();
+        return false;
     });
 
 }
 
-function playNextLesson() {
+function playNextComposition() {
 
-    showLoaderLesson();
-    loadLesson();
+    showLoaderComposition();
+    loadComposition();
 
 }
 
-function showLoaderLesson() {
+function showLoaderComposition() {
 
-    $toPlayLesson.hide();
-    $lessonLoader.show();
+    $toPlayComposition.hide();
+    $compositionLoader.show();
 
+}
+
+function loadComposition() {
+
+    $.ajax({
+        type: "GET",
+        dataType: "JSON",
+        url: "/api.php?action=getnextcomposition",
+        statusCode: {
+            500: function() {
+                alertError('Ooops! Problems!');
+            }
+        }
+    }).done(function (data) {
+
+        if (!data.success) {
+            alertError('Ooops! Problems!');
+        }
+
+        // We hide the loader
+        $compositionLoader.hide();
+
+        console.log(data.composition);
+
+    });
 
 }
 

@@ -54,4 +54,4 @@ body { text-align: center; font-family: "Poiret One", cursive; }
 #play img { opacity: 0.4; width: 150px; height: 150px; }
 #play #play-icon { cursor: pointer; }
 #play a:hover #play-ico, #play a:focus #play-ico { opacity: 0.6; }
-#play #lesson-loader { display: none; }
+#play #composition-loader { display: none; }

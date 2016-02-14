@@ -34,11 +34,34 @@
 
         <section id="play">
 
-            <a href="#" id="to-play-lesson">
+            <a href="#" id="to-play-composition">
                 <img class="play-icon" src="/img/icon_play.svg" alt="Play icon">
             </a>
 
-            <img id="lesson-loader" src="/img/loading.svg" alt="Loader">
+            <img id="composition-loader" src="/img/loading.svg" alt="Loader">
+
+            <section id="composition-content">
+
+                <ul class="tabs">
+
+                    <li>Video</li>
+                    <li>Composer</li>
+                    <li>Composition</li>
+
+                </ul>
+
+                <div class="main-content">
+
+                    <div id="video"></div>
+
+                    <div id="composer"></div>
+
+                    <div id="composition"></div>
+
+                </div>
+                <div id="player"></div>
+
+            </section>
 
         </section>
 
